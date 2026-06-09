@@ -1,0 +1,154 @@
+.booking-page{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+    background:#f5f5f5;
+    min-height:100vh;
+}
+
+.booking-page h1{
+    text-align:center;
+    margin-bottom:30px;
+    color:#222;
+}
+
+.movie-info-card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:25px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.selection-section{
+    margin-bottom:25px;
+}
+
+.selection-section label{
+    display:block;
+    margin-bottom:10px;
+    font-weight:600;
+}
+
+.selection-section select{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+.timing-container{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.time-btn{
+    padding:10px 18px;
+    border:1px solid #ccc;
+    background:white;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.active-time{
+    background:#f84464;
+    color:white;
+    border:none;
+}
+
+.screen{
+    width:500px;
+    margin:40px auto;
+    background:#ddd;
+    text-align:center;
+    padding:12px;
+    border-radius:50% 50% 10px 10px;
+    font-weight:bold;
+}
+
+.seat-grid{
+    display:grid;
+    grid-template-columns:repeat(10,55px);
+    gap:10px;
+    justify-content:center;
+}
+
+.seat{
+    width:55px;
+    height:55px;
+    border:2px solid #1ea83c;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:8px;
+    cursor:pointer;
+    background:white;
+}
+
+.seat:hover{
+    transform:scale(1.05);
+}
+
+.selected{
+    background:#1ea83c;
+    color:white;
+}
+
+.booked{
+    background:#c5c5c5;
+    border:none;
+    color:white;
+    cursor:not-allowed;
+}
+
+.legend{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    margin:25px 0;
+}
+
+.box{
+    width:20px;
+    height:20px;
+    display:inline-block;
+    margin-right:8px;
+    vertical-align:middle;
+}
+
+.available{
+    border:2px solid #1ea83c;
+}
+
+.selected-box{
+    background:#1ea83c;
+}
+
+.booked-box{
+    background:#c5c5c5;
+}
+
+.summary-card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    margin-top:30px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.summary-card p{
+    margin:12px 0;
+}
+
+.proceed-btn{
+    width:100%;
+    padding:14px;
+    background:#f84464;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    margin-top:20px;
+    font-size:16px;
+}

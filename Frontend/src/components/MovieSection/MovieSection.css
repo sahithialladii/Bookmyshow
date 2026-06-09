@@ -1,0 +1,9 @@
+.movie-section{
+    padding:30px 50px;
+}
+
+.movie-list{
+    display:flex;
+    gap:20px;
+    overflow-x:auto;
+}

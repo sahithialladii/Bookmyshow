@@ -1,0 +1,114 @@
+.movie-details-page{
+    background:#f5f5f5;
+    min-height:100vh;
+}
+
+.movie-banner{
+    display:flex;
+    gap:40px;
+    padding:50px;
+    background:#1c1c1c;
+    color:white;
+}
+
+.movie-poster{
+    width:300px;
+    height:450px;
+    border-radius:12px;
+    object-fit:cover;
+}
+
+.movie-info{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.movie-info h1{
+    font-size:42px;
+    margin-bottom:20px;
+}
+
+.rating-box{
+    background:#333;
+    padding:12px 18px;
+    border-radius:8px;
+    width:fit-content;
+    margin-bottom:20px;
+}
+
+.movie-tags{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.movie-tags span{
+    background:#fff;
+    color:black;
+    padding:6px 12px;
+    border-radius:6px;
+    font-size:14px;
+}
+
+.movie-meta{
+    margin-bottom:10px;
+    font-size:16px;
+}
+
+.book-btn{
+    margin-top:20px;
+    width:220px;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#f84464;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.book-btn:hover{
+    background:#e23654;
+}
+
+.about-section,
+.cast-section,
+.crew-section{
+    padding:40px 50px;
+    background:white;
+    margin-top:10px;
+}
+
+.about-section h2,
+.cast-section h2,
+.crew-section h2{
+    margin-bottom:20px;
+}
+
+.cast-list{
+    display:flex;
+    gap:25px;
+}
+
+.cast-card{
+    text-align:center;
+}
+
+.cast-card img{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:10px;
+}
+
+.crew-grid{
+    display:flex;
+    gap:80px;
+}
+
+.crew-grid p{
+    margin-top:5px;
+    color:#555;
+}

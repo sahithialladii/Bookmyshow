@@ -1,0 +1,20 @@
+.hero-banner{
+    height:350px;
+    background:url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    padding-bottom:80px;
+}
+
+.hero-banner h1{
+    font-size:50px;
+}
+
+.hero-banner p{
+    font-size:22px;
+}
