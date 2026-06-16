@@ -1,135 +1,3 @@
-
-
-
-// import { useNavigate } from "react-router-dom";
-// import "./MovieDetails.css";
-
-// function MovieDetails() {
-
-//   const navigate = useNavigate();
-
-//   return (
-//     <div className="movie-details-page">
-
-//       <div className="movie-banner">
-
-//         <img
-//           className="movie-poster"
-//           src="https://picsum.photos/300/450"
-//           alt="Movie Poster"
-//         />
-
-//         <div className="movie-info">
-
-//           <h1>Avengers: Endgame</h1>
-
-//           <div className="rating-box">
-//             ⭐ 8.9/10 (1.2M Votes)
-//           </div>
-
-//           <div className="movie-tags">
-//             <span>U/A</span>
-//             <span>English</span>
-//             <span>3D</span>
-//             <span>IMAX</span>
-//           </div>
-
-//           <p className="movie-meta">
-//             Action • Adventure • Sci-Fi
-//           </p>
-
-//           <p className="movie-meta">
-//             3h 1m • Released: 26 Apr 2019
-//           </p>
-
-//           <button
-//             className="book-btn"
-//             onClick={() => navigate("/booking")}
-//           >
-//             Book Tickets
-//           </button>
-
-//         </div>
-
-//       </div>
-
-//       <section className="about-section">
-//         <h2>About the Movie</h2>
-
-//         <p>
-//           After the devastating events of Infinity War,
-//           the Avengers assemble once more to reverse
-//           Thanos' actions and restore balance to the universe.
-//         </p>
-//       </section>
-
-//       <section className="cast-section">
-//         <h2>Cast</h2>
-
-//         <div className="cast-list">
-
-//           <div className="cast-card">
-//             <img
-//               src="https://picsum.photos/100?1"
-//               alt=""
-//             />
-//             <p>Robert Downey Jr.</p>
-//           </div>
-
-//           <div className="cast-card">
-//             <img
-//               src="https://picsum.photos/100?2"
-//               alt=""
-//             />
-//             <p>Chris Evans</p>
-//           </div>
-
-//           <div className="cast-card">
-//             <img
-//               src="https://picsum.photos/100?3"
-//               alt=""
-//             />
-//             <p>Scarlett Johansson</p>
-//           </div>
-
-//         </div>
-//       </section>
-
-//       <section className="crew-section">
-//         <h2>Crew</h2>
-
-//         <div className="crew-grid">
-
-//           <div>
-//             <strong>Director</strong>
-//             <p>Anthony Russo</p>
-//           </div>
-
-//           <div>
-//             <strong>Producer</strong>
-//             <p>Kevin Feige</p>
-//           </div>
-
-//           <div>
-//             <strong>Music</strong>
-//             <p>Alan Silvestri</p>
-//           </div>
-
-//         </div>
-//       </section>
-
-//     </div>
-//   );
-// }
-
-// export default MovieDetails;
-
-
-
-
-
-
-
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -185,6 +53,20 @@ function MovieDetails() {
 
           <h1>{movie.title}</h1>
 
+
+          <p>
+  <strong>Director:</strong> {movie.director}
+</p>
+
+<p>
+  <strong>Cast:</strong> {movie.cast}
+</p>
+
+<p>
+  <strong>Certificate:</strong> {movie.certificate}
+</p>
+
+
           <div className="rating-box">
             ⭐ {movie.rating}/10
           </div>
@@ -202,11 +84,11 @@ function MovieDetails() {
           </div>
 
           <p className="movie-meta">
-            {movie.genre}
+            Genre:  {movie.genre}
           </p>
 
           <p className="movie-meta">
-            {movie.duration}
+            Duration:  {movie.duration} mins
           </p>
 
           <p className="movie-meta">
@@ -223,6 +105,21 @@ onClick={() =>
           >
             Book Tickets
           </button>
+          {
+  movie.trailerUrl && (
+    <a
+      href={movie.trailerUrl}
+      target="_blank"
+      rel="noreferrer"
+      className="book-btn"
+      style={{
+        marginLeft: "10px"
+      }}
+    >
+      Watch Trailer
+    </a>
+  )
+}
 
         </div>
 

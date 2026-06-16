@@ -10,7 +10,6 @@ import BookingSuccess from "./pages/BookingSuccess";
 import Profile from "./pages/Profile";
 
 
-import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 
 function App() {
@@ -49,11 +48,6 @@ function App() {
 
 
 
-
-        <Route
-  path="/admin/login"
-  element={<AdminLogin />}
-/>
 
 <Route
   path="/admin/dashboard"

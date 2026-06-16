@@ -38,6 +38,16 @@ public class ShowController {
         return showService.getShowById(id);
     }
 
+
+    @PutMapping("/{id}")
+    public Show updateShow(
+            @PathVariable Long id,
+            @RequestBody Show show){
+
+        return showService.updateShow(id, show);
+    }
+
+
     @DeleteMapping("/{id}")
     public void deleteShow(
             @PathVariable Long id){

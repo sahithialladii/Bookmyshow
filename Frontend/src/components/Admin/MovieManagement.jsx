@@ -1,117 +1,278 @@
-
-
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 import axios from "axios";
+import "./AdminManagement.css";
 
 function MovieManagement() {
 
-  const [movies, setMovies] = useState([
-    {
-      title: "Avengers Endgame",
-      genre: "Action",
-      language: "English",
-      rating: 8.9,
-      status: "now-showing"
-    }
-  ]);
+  const [movies, setMovies] = useState([]);
 
-  const [movieName, setMovieName] = useState("");
-  const [genre, setGenre] = useState("");
-  const [language, setLanguage] = useState("");
-  const [rating, setRating] = useState("");
-  const [status, setStatus] = useState("now-showing");
+const [movie, setMovie] = useState({
+  title: "",
+  genre: "",
+  language: "",
+  rating: "",
+  duration: "",
+  releaseDate: "",
+  status: "now-showing",
+  posterUrl: "",
+  trailerUrl: "",
+  director: "",
+  cast: "",
+  certificate: "",
+  description: ""
+});
 
-  const addMovie = () => {
+  const [editingId, setEditingId] = useState(null);
 
-  if (
-    movieName.trim() === "" ||
-    genre.trim() === "" ||
-    language.trim() === "" ||
-    rating === ""
-  ) return;
+  useEffect(() => {
+    fetchMovies();
+  }, []);
 
-  const newMovie = {
-    title: movieName,
-    genre,
-    language,
-    rating: Number(rating),
-    status
+  const fetchMovies = () => {
+    axios
+      .get("http://localhost:8080/api/movies")
+      .then((res) => {
+        setMovies(res.data);
+      })
+      .catch((err) => console.log(err));
   };
 
-  axios.post("http://localhost:8080/api/movies", newMovie)
-    .then((res) => {
-      setMovies([...movies, res.data]); // update UI from backend response
-    })
-    .catch((err) => {
-      console.log("Error saving movie:", err);
+  const handleChange = (e) => {
+    setMovie({
+      ...movie,
+      [e.target.name]: e.target.value
     });
+  };
 
-  setMovieName("");
-  setGenre("");
-  setLanguage("");
-  setRating("");
-  setStatus("now-showing");
+  const handleSubmit = () => {
+
+    if (
+      movie.title === "" ||
+      movie.genre === "" ||
+      movie.language === ""
+    ) {
+      alert("Please fill all required fields");
+      return;
+    }
+
+    if (editingId) {
+
+      axios
+        .put(
+          `http://localhost:8080/api/movies/${editingId}`,
+          movie
+        )
+        .then(() => {
+
+          alert("Movie Updated");
+
+          setEditingId(null);
+
+          resetForm();
+
+          fetchMovies();
+        });
+
+    } else {
+
+      console.log(movie);
+console.log("Poster URL Length:", movie.posterUrl.length);
+      axios
+        .post(
+          "http://localhost:8080/api/movies",
+          movie
+        )
+        .then(() => {
+
+          alert("Movie Added");
+
+          resetForm();
+
+          fetchMovies();
+        });
+    }
+  };
+
+const resetForm = () => {
+
+  setMovie({
+    title: "",
+    genre: "",
+    language: "",
+    rating: "",
+    duration: "",
+    releaseDate: "",
+    status: "now-showing",
+    posterUrl: "",
+    trailerUrl: "",
+    director: "",
+    cast: "",
+    certificate: "",
+    description: ""
+  });
+
 };
 
+  const editMovie = (movieData) => {
 
-  const deleteMovie = (index) => {
+    setMovie(movieData);
 
-    setMovies(
-      movies.filter(
-        (_, i) => i !== index
+    setEditingId(movieData.id);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
+  const deleteMovie = (id) => {
+
+    if (!window.confirm("Delete this movie?")) {
+      return;
+    }
+
+    axios
+      .delete(
+        `http://localhost:8080/api/movies/${id}`
       )
-    );
+      .then(() => {
+
+        alert("Movie Deleted");
+
+        fetchMovies();
+
+      })
+      .catch((err) => {
+
+        console.log(err);
+
+        alert(
+          "Movie cannot be deleted. It may be linked to shows."
+        );
+      });
   };
 
   return (
+    <div className="admin-container">
 
-    <div>
-
-      <h2>Manage Movies</h2>
+      <h2>
+        {editingId
+          ? "Edit Movie"
+          : "Add Movie"}
+      </h2>
 
       <input
+      className="admin-input"
         type="text"
-        placeholder="Movie Name"
-        value={movieName}
-        onChange={(e) =>
-          setMovieName(e.target.value)
-        }
+        name="title"
+        placeholder="Movie Title"
+        value={movie.title}
+        onChange={handleChange}
       />
 
       <input
+      className="admin-input"
         type="text"
+        name="genre"
         placeholder="Genre"
-        value={genre}
-        onChange={(e) =>
-          setGenre(e.target.value)
-        }
+        value={movie.genre}
+        onChange={handleChange}
       />
 
       <input
+      className="admin-input"
         type="text"
+        name="language"
         placeholder="Language"
-        value={language}
-        onChange={(e) =>
-          setLanguage(e.target.value)
-        }
+        value={movie.language}
+        onChange={handleChange}
       />
 
       <input
+      className="admin-input"
         type="number"
-        step="0.1"
+        name="rating"
         placeholder="Rating"
-        value={rating}
-        onChange={(e) =>
-          setRating(e.target.value)
-        }
+        value={movie.rating}
+        onChange={handleChange}
+      />
+
+      <input
+      className="admin-input"
+        type="text"
+        name="duration"
+        placeholder="Duration"
+        value={movie.duration}
+        onChange={handleChange}
+      />
+
+      <input
+      className="admin-input"
+        type="date"
+        name="releaseDate"
+        value={movie.releaseDate}
+        onChange={handleChange}
+      />
+
+      <input
+      className="admin-input"
+        type="text"
+        name="posterUrl"
+        placeholder="Poster URL"
+        value={movie.posterUrl}
+        onChange={handleChange}
+      />
+
+
+      <input
+      className="admin-input"
+  type="text"
+  name="trailerUrl"
+  placeholder="Trailer URL"
+  value={movie.trailerUrl}
+  onChange={handleChange}
+/>
+
+<input
+className="admin-input"
+  type="text"
+  name="director"
+  placeholder="Director"
+  value={movie.director}
+  onChange={handleChange}
+/>
+
+<input
+className="admin-input"
+  type="text"
+  name="cast"
+  placeholder="Cast"
+  value={movie.cast}
+  onChange={handleChange}
+/>
+
+<input
+className="admin-input"
+  type="text"
+  name="certificate"
+  placeholder="Certificate (U, U/A, A)"
+  value={movie.certificate}
+  onChange={handleChange}
+/>
+
+      <textarea
+      className="admin-input"
+        name="description"
+        placeholder="Description"
+        value={movie.description}
+        onChange={handleChange}
       />
 
       <select
-        value={status}
-        onChange={(e) =>
-          setStatus(e.target.value)
-        }
+      className="admin-input"
+        name="status"
+        value={movie.status}
+        onChange={handleChange}
       >
         <option value="now-showing">
           Now Showing
@@ -122,26 +283,29 @@ function MovieManagement() {
         </option>
       </select>
 
-      <button
-        className="add-btn"
-        onClick={addMovie}
-      >
-        Add Movie
+      <button 
+      className="primary-btn"
+      onClick={handleSubmit}>
+        {editingId
+          ? "Update Movie"
+          : "Add Movie"}
       </button>
 
-      <br /><br />
+      <hr />
 
-      {movies.map((movie, index) => (
+      <h2>Movie List</h2>
 
-        <div
-          key={index}
-          style={{
-            border:"1px solid #ddd",
-            padding:"15px",
-            marginBottom:"15px",
-            borderRadius:"8px"
-          }}
-        >
+      {movies.map((movie) => (
+
+<div key={movie.id} className="admin-card">
+
+          {movie.posterUrl && (
+            <img
+              src={movie.posterUrl}
+              alt={movie.title}
+              width="150"
+            />
+          )}
 
           <h3>{movie.title}</h3>
 
@@ -154,23 +318,63 @@ function MovieManagement() {
           </p>
 
           <p>
-            Rating: ⭐ {movie.rating}
+            Rating: {movie.rating}
           </p>
 
           <p>
-            Status:
-            {" "}
-            {
-              movie.status === "now-showing"
-                ? "Now Showing"
-                : "Upcoming"
-            }
+            Duration: {movie.duration}
           </p>
+
+          <p>
+            Release Date: {movie.releaseDate}
+          </p>
+
+          <p>
+            Status: {movie.status}
+          </p>
+
+
+          <p>
+  Director: {movie.director}
+</p>
+
+<p>
+  Cast: {movie.cast}
+</p>
+
+<p>
+  Certificate: {movie.certificate}
+</p>
+
+{movie.trailerUrl && (
+  <p>
+    <a
+      href={movie.trailerUrl}
+      target="_blank"
+      rel="noreferrer"
+    >
+      Watch Trailer
+    </a>
+  </p>
+)}
+
+          <p>
+            {movie.description}
+          </p>
+
+          <button
+            className="edit-btn"
+            onClick={() =>
+              editMovie(movie)
+            }
+          >
+            Edit
+          </button>
 
           <button
             className="delete-btn"
             onClick={() =>
-              deleteMovie(index)
+              deleteMovie(movie.id)
             }
           >
             Delete

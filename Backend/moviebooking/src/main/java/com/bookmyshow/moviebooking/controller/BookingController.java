@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/bookings")
@@ -23,6 +24,8 @@ public class BookingController {
     public Booking createBooking(
             @RequestBody Booking booking) {
 
+        booking.setBookingDate(LocalDateTime.now());
+        booking.setStatus("CONFIRMED");
         return bookingService.saveBooking(booking);
     }
 
@@ -30,5 +33,12 @@ public class BookingController {
     public List<Booking> getAllBookings() {
 
         return bookingRepository.findAll();
+    }
+
+    @GetMapping("/user/{userId}")
+    public List<Booking> getUserBookings(
+            @PathVariable Long userId) {
+
+        return bookingRepository.findByUserId(userId);
     }
 }

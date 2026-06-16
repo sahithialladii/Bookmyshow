@@ -1,0 +1,216 @@
+/* PAGE */
+
+.movie-management,
+.theatre-management,
+.show-management,
+.user-management,
+.booking-management {
+
+  padding: 30px;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+/* HEADINGS */
+
+.movie-management h2,
+.theatre-management h2,
+.show-management h2,
+.user-management h2,
+.booking-management h2 {
+
+  color: #222;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+/* FORM */
+
+.movie-management input,
+.movie-management textarea,
+.movie-management select,
+
+.theatre-management input,
+.theatre-management textarea,
+.theatre-management select,
+
+.show-management input,
+.show-management textarea,
+.show-management select,
+
+.user-management input,
+.user-management textarea,
+.user-management select,
+
+.booking-management input,
+.booking-management textarea,
+.booking-management select {
+
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+
+  font-size: 15px;
+  box-sizing: border-box;
+
+  background: white;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* BUTTONS */
+
+.movie-management button,
+.theatre-management button,
+.show-management button,
+.user-management button,
+.booking-management button {
+
+  background: #e50914;
+  color: white;
+
+  border: none;
+  padding: 10px 18px;
+
+  margin-right: 10px;
+  margin-top: 10px;
+
+  border-radius: 8px;
+  cursor: pointer;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+.movie-management button:hover,
+.theatre-management button:hover,
+.show-management button:hover,
+.user-management button:hover,
+.booking-management button:hover {
+
+  background: #b20710;
+}
+
+/* CARD LIST */
+
+.movie-management > div:not(:first-child),
+.theatre-management > div:not(:first-child),
+.show-management > div:not(:first-child),
+.user-management > div:not(:first-child),
+.booking-management > div:not(:first-child) {
+
+  background: white;
+
+  padding: 20px;
+  margin-bottom: 20px;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 2px 10px rgba(0,0,0,0.08);
+}
+
+/* CARD TITLE */
+
+.movie-management h3,
+.theatre-management h3,
+.show-management h3,
+.user-management h3,
+.booking-management h3 {
+
+  margin-top: 10px;
+  color: #222;
+}
+
+/* PARAGRAPHS */
+
+.movie-management p,
+.theatre-management p,
+.show-management p,
+.user-management p,
+.booking-management p {
+
+  margin: 6px 0;
+  color: #555;
+}
+
+/* IMAGES */
+
+.movie-management img {
+
+  width: 150px;
+  height: 220px;
+
+  object-fit: cover;
+
+  border-radius: 10px;
+
+  margin-bottom: 10px;
+}
+
+/* HORIZONTAL LINE */
+
+hr {
+
+  margin: 30px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+/* TABLE LOOK */
+
+.booking-management .ticket-card,
+.user-management .user-card,
+.show-management .show-card,
+.theatre-management .theatre-card,
+.movie-management .movie-card {
+
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 20px;
+
+  box-shadow:
+    0 2px 10px rgba(0,0,0,0.08);
+
+  margin-bottom: 15px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+  .movie-management,
+  .theatre-management,
+  .show-management,
+  .user-management,
+  .booking-management {
+
+    padding: 15px;
+  }
+
+  .movie-management button,
+  .theatre-management button,
+  .show-management button,
+  .user-management button,
+  .booking-management button {
+
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .movie-management img {
+
+    width: 100%;
+    height: auto;
+  }
+}

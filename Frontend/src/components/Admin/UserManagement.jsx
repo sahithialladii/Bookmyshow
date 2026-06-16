@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "./AdminManagement.css";
 
 function UserManagement() {
 
@@ -25,11 +26,12 @@ function UserManagement() {
 
   return (
 
-    <div>
+    <div className="admin-container">
 
       <h2>All Users</h2>
 
       <table
+        className="admin-table"
         border="1"
         cellPadding="10"
         style={{

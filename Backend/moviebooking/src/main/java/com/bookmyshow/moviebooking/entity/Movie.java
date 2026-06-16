@@ -104,7 +104,14 @@ public class Movie {
 
     private String status;
 
+    @Column(length = 2000)
     private String posterUrl;
+
+    @Column(length = 2000)
+    private String trailerUrl;
+    private String director;
+    private String cast;
+    private String certificate;
 
     @Column(length = 2000)
     private String description;
